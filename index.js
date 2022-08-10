@@ -32,4 +32,17 @@ const createCourse = async () => {
   console.log("result=>", result);
 };
 
-createCourse();
+// createCourse();
+
+const getCourses = async () => {
+  const courses = await Course.find({
+    author: "surbhi",
+    isPublished: true,
+  })
+    .limit(10) // only gets 10 documents
+    .sort({ name: 1 }) //-1 for desc order
+    .select({ name: 1, tags: 1 }); //selects only the props that we want to see
+  console.log("courses=> ", courses);
+};
+
+getCourses();
