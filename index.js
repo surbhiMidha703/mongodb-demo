@@ -45,4 +45,23 @@ const getCourses = async () => {
   console.log("courses=> ", courses);
 };
 
-getCourses();
+// getCourses();
+
+//approach 1 to update
+const updateCourseApp1 = async (id) => {
+  const course = await Course.findById(id);
+  if (!course) return;
+
+  course.isPublished = true;
+  course.author = "another author";
+
+  const result = await course.save();
+  console.log("result=> ", result);
+  //another approach to set the fields
+  //   course.set({
+  //     isPublished: true,
+  //     author: "another author",
+  //   });
+};
+
+updateCourseApp1("62f334238bc43660fcf3a313");
