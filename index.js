@@ -64,4 +64,32 @@ const updateCourseApp1 = async (id) => {
   //   });
 };
 
-updateCourseApp1("62f334238bc43660fcf3a313");
+// updateCourseApp1("62f334238bc43660fcf3a313");
+
+//updating a doucmnet Approach 2.1
+
+const updateCourseAppTwoOne = async (id) => {
+  const result = await Course.updateOne(
+    { _id: id },
+    { $set: { author: "Surbhi", isPublished: false } }
+  );
+
+  console.log("result=> ", result);
+};
+
+// updateCourseAppTwoOne("62f334238bc43660fcf3a313");
+
+// approach 2.2 - get the actual course, if new flag is not passed we get the old course not the updated one
+const updateCourseAppTwoTwo = async (id) => {
+  const result = await Course.findByIdAndUpdate(
+    id,
+    {
+      $set: { author: "Vipul", isPublished: true },
+    },
+    { new: true }
+  );
+
+  console.log("result=> ", result);
+};
+
+updateCourseAppTwoTwo("62f334238bc43660fcf3a313");
