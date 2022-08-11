@@ -9,7 +9,7 @@ mongoose
   .catch((e) => console.error("could not connect to DB", e));
 
 const courseSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   author: String,
   tags: [String],
   date: { type: Date, default: Date.now },
@@ -28,8 +28,12 @@ const createCourse = async () => {
     tags: ["node", "frontend"],
     isPublished: true,
   });
-  const result = await course.save();
-  console.log("result=>", result);
+  try {
+    const result = await course.save();
+    console.log("result=>", result);
+  } catch (err) {
+    console.log("err.message=> ", err.message);
+  }
 };
 
 // createCourse();
