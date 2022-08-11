@@ -92,4 +92,13 @@ const updateCourseAppTwoTwo = async (id) => {
   console.log("result=> ", result);
 };
 
-updateCourseAppTwoTwo("62f334238bc43660fcf3a313");
+// updateCourseAppTwoTwo("62f334238bc43660fcf3a313");
+
+//deleting documents
+
+const deleteCourse = async (id) => {
+  const result = await Course.deleteOne({ _id: id });
+  console.log("result=>", result);
+};
+
+deleteCourse("62f334238bc43660fcf3a313");
